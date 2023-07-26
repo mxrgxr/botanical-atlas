@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'output.css' %}">
+    <link rel="stylesheet" href="{% static 'custom.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar">
+      <div class="container mx-auto">
+        <div class="flex justify-between items-center">
+          <a href="/" class="text-white font-bold">Botanical Atlas</a>
+          <div>
+            <a href="{% url 'about' %}" class="text-white mx-2">About</a>
+            <a href="{% url 'index' %}" class="text-white mx-2">All Plants</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
