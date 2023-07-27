@@ -8,13 +8,14 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="bg-blue-500 p-4">
-      <div class="container mx-auto">
-        <div class="flex justify-between items-center">
-          <a href="/" class="text-white font-bold">Botanical Atlas</a>
+    <nav>
+      <div>
+        <div>
+          <a href="{% url 'home' %}">Botanical Atlas</a>
           <div>
-            <a href="{% url 'about' %}" class="text-white mx-2">About</a>
-            <a href="{% url 'index' %}" class="text-white mx-2">All Plants</a>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{%url 'plants_create'%}">Add Plant</a></li>
+            <li><a href="{% url 'index' %}">All Plants</a></li>
           </div>
         </div>
       </div>
