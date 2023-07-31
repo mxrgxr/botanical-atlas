@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Growth Conditions List</h1>
+
+{% for growth_condition in growth_conditions_list %}
+  <a href="{% url 'growth_conditions_detail' growth_condition.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ growth_condition.name }}</span>
+            <p>Description: {{ growth_condition.description }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

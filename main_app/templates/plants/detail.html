@@ -9,12 +9,46 @@
     <p>Genus: {{ plant.genus }}</p>
     <p>Species: {{ plant.species }}</p>
     <p>Type: {{ plant.plant_type }}</p>
-    <p>Country of Origin: {{ plant.country_of_origin }}</p>
     <p>Conservation Status: {% if plant.conservation_status %}Endangered{% else %}Not Endangered{% endif %}</p>
   </div>
-  <div class="card-action">
+  <div>
     <a href="{% url 'plants_update' plant.id %}">Edit</a>
     <a href="{% url 'plants_delete' plant.id %}">Delete</a>
+  </div>
+</div>
+<form action="{% url 'add_country_of_origin' plant.id %}" method="POST">
+  {% csrf_token %}
+  {{ country_of_origin_form.as_p }}
+  <input type="submit" class="btn" value="Add Country of Origin">
+</form>
+<ul>
+  {% for country in plant.countryoforigin_set.all %}
+    <li>{{ country.country_name }}</li>
+  {% endfor %}
+</ul>
+<div class="row">
+  <div class="col">
+    <h3>{{ plant.common_name }}'s Growth Conditions</h3>
+    <ul>
+      {% for growth_condition in associated_growth_conditions %}
+        <li>{{ growth_condition }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="col">
+    <h3>Available Growth Conditions</h3>
+    <ul>
+      {% for growth_condition in available_growth_conditions %}
+        <li>
+          {{ growth_condition }}
+          <form action="{% url 'assoc_growth_condition' plant.id growth_condition.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn">Add</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 
